@@ -150,21 +150,8 @@ Detect the change and use **update/upsert processing** so the central platform r
 
 ### Flow
 
-```text
-Driver Information
-        ↓
-  Change Detection
-        ↓
- Information Changed?
-        ↓
-       Yes
-        ↓
-   Update / Upsert
-        ↓
-Central Data Platform
-```
+<img width="1589" height="990" alt="image" src="https://github.com/user-attachments/assets/a934d216-74a4-493e-9107-7d0c8459c1db" />
 
----
 
 ## Problem 9 — Source Information Changes After System Changes
 
@@ -178,20 +165,8 @@ Use **schema validation and schema handling** to identify compatible and incompa
 
 ### Flow
 
-```text
-Incoming Source Data
-        ↓
-  Schema Validation
-        ↓
-   ┌────┴──────────┐
-   ↓               ↓
-Compatible     Incompatible
-   ↓               ↓
-Transform /     Quarantine /
-Process         Investigate
-```
+<img width="1644" height="957" alt="Problem 9" src="https://github.com/user-attachments/assets/b59d63bb-13c2-460e-b081-931835b8d0a2" />
 
----
 
 ## Problem 10 — Unchanged Information Should Not Be Reprocessed
 
@@ -205,21 +180,8 @@ Use **change detection and incremental processing** to identify only new or chan
 
 ### Flow
 
-```text
-Incoming Information
-        ↓
-  Change Detection
-        ↓
-   ┌────┴─────┐
-   ↓          ↓
-Changed    Unchanged
-   ↓          ↓
-Process      Skip
-   ↓
-Central Data Platform
-```
+<img width="1589" height="990" alt="image" src="https://github.com/user-attachments/assets/eb1c317f-f575-4f14-a708-69c780cb0b3b" />
 
----
 
 # 4. Ingestion Decision Rationale
 
