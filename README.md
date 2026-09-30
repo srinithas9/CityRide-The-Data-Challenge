@@ -1,6 +1,6 @@
 # 🚗 CityRide — The Data Challenge
 
-## 1. Business Context
+## 1. Business Context.
 
 CityRide is a growing ride-booking company that wants to bring information from its **driver network, ride-booking application, and customer support team** into one central data platform.
 
