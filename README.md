@@ -44,6 +44,7 @@ Use a **hybrid ingestion strategy**, where the ingestion method is selected acco
 
 <img width="1846" height="852" alt="Problem 1" src="https://github.com/user-attachments/assets/27e8c0af-f509-4451-8bc0-37a9e7ec92e6" />
 
+---
 
 ## Problem 2 — Driver Information Arrives at the End of the Day
 
@@ -59,6 +60,7 @@ Use **batch ingestion** because this information does not require continuous pro
 
 <img width="1644" height="957" alt="Problem 2" src="https://github.com/user-attachments/assets/701f8bfe-a3d8-4403-a234-8e64bc6602a3" />
 
+---
 
 ## Problem 3 — Ride Events Need to Be Available as They Happen
 
@@ -74,6 +76,7 @@ Use **streaming ingestion** for ride lifecycle events.
 
 <img width="1644" height="957" alt="Problem 3" src="https://github.com/user-attachments/assets/311ed244-33b6-47a3-bbc3-9fc17d530476" />
 
+---
 
 ## Problem 4 — Customers and Drivers Can Update Their Information
 
@@ -83,12 +86,13 @@ Customers and drivers can update their information after it was previously share
 
 ### Proposed Solution
 
-Use **change detection and incremental processing** so that changed information is processed without repeatedly processing unchanged information.
+Use **change detection and incremental processing** so that changed information can be identified and processed without repeatedly processing unchanged information.
 
 ### Flow
 
 <img width="1644" height="957" alt="Problem 4" src="https://github.com/user-attachments/assets/d437c80a-981f-4d37-813a-f4741215f00a" />
 
+---
 
 ## Problem 5 — Some Information Arrives Late
 
@@ -104,6 +108,7 @@ Use **late-data handling** so that late-arriving information can still be proces
 
 <img width="1644" height="957" alt="Problem 5" src="https://github.com/user-attachments/assets/373d779c-576b-4478-96b5-5684c9f43e2a" />
 
+---
 
 ## Problem 6 — Some Records Are Incomplete
 
@@ -122,6 +127,7 @@ Validate records before processing them.
 
 <img width="1644" height="957" alt="Problem 6" src="https://github.com/user-attachments/assets/804cc2e8-510f-4397-810c-6d37c36ec113" />
 
+---
 
 ## Problem 7 — Some Rides Appear More Than Once
 
@@ -137,6 +143,7 @@ Use **duplicate detection and deduplication** before the data is used downstream
 
 <img width="1644" height="957" alt="Problem 7 (1)" src="https://github.com/user-attachments/assets/7cec095f-3006-4c0c-9531-8537a29bfe56" />
 
+---
 
 ## Problem 8 — Drivers Correct Previously Shared Information
 
@@ -152,6 +159,7 @@ Detect the change and use **update/upsert processing** so the central platform r
 
 <img width="1589" height="990" alt="image" src="https://github.com/user-attachments/assets/a934d216-74a4-493e-9107-7d0c8459c1db" />
 
+---
 
 ## Problem 9 — Source Information Changes After System Changes
 
@@ -167,6 +175,7 @@ Use **schema validation and schema handling** to identify compatible and incompa
 
 <img width="1644" height="957" alt="Problem 9" src="https://github.com/user-attachments/assets/b59d63bb-13c2-460e-b081-931835b8d0a2" />
 
+---
 
 ## Problem 10 — Unchanged Information Should Not Be Reprocessed
 
@@ -176,23 +185,24 @@ CityRide wants to avoid repeatedly processing information that has not changed.
 
 ### Proposed Solution
 
-Use **change detection and incremental processing** to identify only new or changed information.
+Use **change detection and incremental processing** to identify unchanged information and avoid unnecessary processing.
 
 ### Flow
 
 <img width="1589" height="990" alt="image" src="https://github.com/user-attachments/assets/eb1c317f-f575-4f14-a708-69c780cb0b3b" />
 
+---
 
-# 4. Ingestion Decision Rationale
+# 4. Ingestion & Handling Decision Rationale
 
-The ingestion approach is selected based on the requirements described in the CityRide case.
+The ingestion and handling approach is selected based on the requirements described in the CityRide case.
 
-| Source / Requirement          | Ingestion Choice           | Reason                                                                                                 |
+| Source / Requirement          | Approach                   | Reason                                                                                                 |
 | ----------------------------- | -------------------------- | ------------------------------------------------------------------------------------------------------ |
 | Driver Network                | **Batch**                  | Driver information is usually shared at the end of the day, so continuous ingestion is not required.   |
 | Ride-booking Application      | **Streaming**              | Ride events need to be available as they happen.                                                       |
 | Customer / Driver Updates     | **Incremental Processing** | Information can change after it was previously shared, so processing can focus on changed information. |
-| Unchanged Information         | **Change Detection**       | Avoids repeatedly processing information that has not changed.                                         |
+| Unchanged Information         | **Change Detection**       | Identifies information that has not changed so it does not need to be processed again.                 |
 | Incomplete Records            | **Validation**             | Identifies incomplete information before further processing.                                           |
 | Duplicate Rides               | **Deduplication**          | Prevents repeated ride records from being processed as separate records.                               |
 | Corrected Information         | **Update / Upsert**        | Allows previously shared information to be updated when corrections are received.                      |
@@ -204,13 +214,12 @@ The ingestion approach is selected based on the requirements described in the Ci
 # 5. Overall Proposed Architecture
 
 The individual solutions come together into the following ingestion flow:
+
 <img width="1536" height="1024" alt="Final_Architecture" src="https://github.com/user-attachments/assets/453d527c-019f-4df8-84d9-bf722235eda2" />
 
-# 6. Final Recommendation
+---
 
-CityRide should use a **hybrid ingestion strategy** rather than using a single ingestion method for every source.
-
-### Recommended approach
+# 6. Recommended Approach
 
 * **Batch** → Driver information shared daily
 * **Streaming** → Ride events that need to be available as they happen
@@ -221,21 +230,14 @@ CityRide should use a **hybrid ingestion strategy** rather than using a single i
 * **Schema handling** → Source representation changes
 * **Late-data handling** → Information arriving later than expected
 
-This approach matches the ingestion method and handling mechanism to the requirements described in the CityRide case study.
-
 ---
 
-# 7. Project Scope
+# 7. Conclusion
 
-This project focuses on:
+CityRide should use a **hybrid ingestion strategy** rather than a single ingestion method for every source.
 
-* Understanding the source systems
-* Identifying ingestion requirements
-* Selecting appropriate ingestion approaches
-* Handling changing information
-* Handling data-quality issues
-* Handling source representation changes
-* Designing the proposed ingestion flow
-* Explaining the reasoning behind the design
+The proposed design matches the ingestion and handling approach to each requirement: **batch** for daily driver information, **streaming** for ride events that need to be available as they happen, and **incremental processing** for information that changes.
 
-The design is based on the requirements provided in the **CityRide — The Data Challenge** case study.
+The design also addresses the identified data-quality and source-change challenges through **validation, deduplication, update/upsert processing, late-data handling, and schema handling**.
+
+This provides CityRide with an ingestion flow that is aligned with the requirements described in the case study.
