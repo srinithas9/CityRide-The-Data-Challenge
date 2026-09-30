@@ -324,36 +324,7 @@ The ingestion approach is selected based on the requirements described in the Ci
 # 5. Overall Proposed Architecture
 
 The individual solutions come together into the following ingestion flow:
-
-```text
-                    CITYRIDE SOURCE SYSTEMS
-                             │
-          ┌──────────────────┼──────────────────┐
-          ↓                  ↓                  ↓
-   Driver Network      Ride-booking App    Customer / Driver
-          │                  │                  │
-       BATCH             STREAMING          INCREMENTAL
-          │                  │                  │
-          └──────────────────┼──────────────────┘
-                             ↓
-                       RAW / LANDING
-                             ↓
-                  VALIDATION & HANDLING
-                             │
-       ┌─────────────┬───────┼────────┬──────────────┐
-       ↓             ↓       ↓        ↓              ↓
-    Validate      Dedup   Late Data  Updates       Schema
-       │             │       │        │              │
-       └─────────────┴───────┴────────┴──────────────┘
-                             ↓
-                  CENTRAL DATA PLATFORM
-                             ↓
-                    ANALYTICS / REPORTING
-```
-
-> **Visual architecture diagram will be added later.**
-
----
+<img width="1536" height="1024" alt="Final_Architecture" src="https://github.com/user-attachments/assets/453d527c-019f-4df8-84d9-bf722235eda2" />
 
 # 6. Final Recommendation
 
