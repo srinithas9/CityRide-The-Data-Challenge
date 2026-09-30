@@ -42,20 +42,8 @@ Use a **hybrid ingestion strategy**, where the ingestion method is selected acco
 
 ### Flow
 
-```text
-Different Freshness Requirements
-              ↓
-       Hybrid Ingestion
-              ↓
-    ┌─────────┼─────────┐
-    ↓         ↓         ↓
-  Batch    Streaming  Incremental
-    ↓         ↓         ↓
-Periodic   Real-time   Changed Data
-Processing  Events      Only
-```
+<img width="1846" height="852" alt="Problem 1" src="https://github.com/user-attachments/assets/27e8c0af-f509-4451-8bc0-37a9e7ec92e6" />
 
----
 
 ## Problem 2 — Driver Information Arrives at the End of the Day
 
@@ -69,17 +57,8 @@ Use **batch ingestion** because this information does not require continuous pro
 
 ### Flow
 
-```text
-Driver Network
-      ↓
-Daily Driver Information
-      ↓
-Batch Ingestion
-      ↓
-Central Data Platform
-```
+<img width="1644" height="957" alt="Problem 2" src="https://github.com/user-attachments/assets/701f8bfe-a3d8-4403-a234-8e64bc6602a3" />
 
----
 
 ## Problem 3 — Ride Events Need to Be Available as They Happen
 
@@ -93,19 +72,8 @@ Use **streaming ingestion** for ride lifecycle events.
 
 ### Flow
 
-```text
-Ride-booking Application
-          ↓
-       Ride Events
-          ↓
-      Streaming
-          ↓
-Central Data Platform
-          ↓
-Operations / Analytics
-```
+<img width="1644" height="957" alt="Problem 3" src="https://github.com/user-attachments/assets/311ed244-33b6-47a3-bbc3-9fc17d530476" />
 
----
 
 ## Problem 4 — Customers and Drivers Can Update Their Information
 
@@ -119,20 +87,8 @@ Use **change detection and incremental processing** so that changed information 
 
 ### Flow
 
-```text
-Customer / Driver Information
-              ↓
-        Change Detection
-              ↓
-        ┌─────┴─────┐
-        ↓           ↓
-     Changed     Unchanged
-        ↓           ↓
-   Process      Skip / No
-   Incrementally Reprocessing
-```
+<img width="1644" height="957" alt="Problem 4" src="https://github.com/user-attachments/assets/d437c80a-981f-4d37-813a-f4741215f00a" />
 
----
 
 ## Problem 5 — Some Information Arrives Late
 
@@ -146,22 +102,8 @@ Use **late-data handling** so that late-arriving information can still be proces
 
 ### Flow
 
-```text
-Incoming Information
-          ↓
-     Arrival Check
-          ↓
-    ┌─────┴─────┐
-    ↓           ↓
- On Time       Late
-    ↓           ↓
- Process     Late-data
- Normally     Handling
-                ↓
-             Process
-```
+<img width="1644" height="957" alt="Problem 5" src="https://github.com/user-attachments/assets/373d779c-576b-4478-96b5-5684c9f43e2a" />
 
----
 
 ## Problem 6 — Some Records Are Incomplete
 
@@ -178,19 +120,8 @@ Validate records before processing them.
 
 ### Flow
 
-```text
-Incoming Record
-      ↓
-   Validation
-      ↓
- ┌────┴─────┐
- ↓          ↓
-Valid     Incomplete
- ↓          ↓
-Process   Quarantine
-```
+<img width="1644" height="957" alt="Problem 6" src="https://github.com/user-attachments/assets/804cc2e8-510f-4397-810c-6d37c36ec113" />
 
----
 
 ## Problem 7 — Some Rides Appear More Than Once
 
@@ -204,21 +135,8 @@ Use **duplicate detection and deduplication** before the data is used downstream
 
 ### Flow
 
-```text
-Incoming Ride Record
-        ↓
-  Duplicate Check
-        ↓
-   ┌────┴─────┐
-   ↓          ↓
-New Record   Duplicate
-   ↓          ↓
- Process    Deduplicate
-              ↓
-        Avoid Duplicate
-```
+<img width="1644" height="957" alt="Problem 7 (1)" src="https://github.com/user-attachments/assets/7cec095f-3006-4c0c-9531-8537a29bfe56" />
 
----
 
 ## Problem 8 — Drivers Correct Previously Shared Information
 
