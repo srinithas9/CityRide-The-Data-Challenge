@@ -215,7 +215,8 @@ The ingestion and handling approach is selected based on the requirements descri
 
 The individual solutions come together into the following ingestion flow:
 
-<img width="1536" height="1024" alt="Final_Architecture" src="https://github.com/user-attachments/assets/453d527c-019f-4df8-84d9-bf722235eda2" />
+<img width="1536" height="1024" alt="image" src="https://github.com/user-attachments/assets/a2bccbc2-d56e-4597-96fe-176733a01c75" />
+
 
 ---
 
