@@ -194,8 +194,8 @@ Information may be recorded differently after changes to the source system, whic
 Use **schema validation and schema handling** to detect changes in the incoming data structure. Compatible changes can continue through the pipeline, while incompatible changes can be handled separately for transformation or investigation.
 
 ### Flow
+<img width="1536" height="1280" alt="image" src="https://github.com/user-attachments/assets/54853bb1-6b4b-4158-a253-a283659e1e08" />
 
-<img width="850" alt="Problem 10" src="https://github.com/user-attachments/assets/b66015ba-71b2-43b2-9c41-641470afd591" />
 
 ---
 
